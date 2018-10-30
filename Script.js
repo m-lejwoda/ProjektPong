@@ -4,7 +4,13 @@ const ctx = canvas.getContext('2d');
 canvas.width = 1000;
 canvas.height = 500;
 let gameWidth = canvas.width;
-
+const ballMove = ballsGame =>
+{
+    ballsGame.forEach(ballGame =>
+    {
+        ballGame.move(collisionObjects);
+    })
+}
 const updateGameWindow = () =>
 {
     gameWidth = canvas.width;
@@ -50,19 +56,22 @@ const drawObject = (collisionObjects,context) =>
 }
 
 const collisionObjects = [];
-conts ballsMove = [];
+conts ballsGame = [];
 
 const playerPaddel = new Paddel(20, 120, 'green', 10, 50);
 const computerPaddel = new Paddel(20, 120, 'red', canvas.width - 30, 100);
 const ball1 = new Ball(8, 'white', canvas.width / 2 - 4, canvas.height / 2 - 4);
 collisionObjects.push(playerPaddel, computerPaddel, ball1);
-
+ballsGame.push()
 const run = () =>
 {
     if (gameWidth !== canvas.width)
     {
         updateGameWindow();
+        
     }
+    clearScreen();
+    ballMove(ballsGame);
     drawObject(collisionObjects, ctx);
 }
 let timer = setInterval(run, 1000 / 60);
