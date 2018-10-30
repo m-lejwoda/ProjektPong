@@ -19,7 +19,7 @@ const updateGameWindow = () =>
 const clearScreen = () =>
 {
     ctx.fillStyle = 'black';
-    ctx.fillRect = (0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 function Paddel(width,height,color,positionX,positionY) 
 {
@@ -43,7 +43,42 @@ function Ball(size,color,positionX,positionY)
     this.speedY = 2;
     this.directionX = true; //true w prawo
     this.directionY = true; //true w dó³
+    this.move = collisionObjects =>
+    {
+        let collision = 0;
+        const ballLeft = this.positionX;
+        const ballRight = this.positionX + this.width;
+        const ballTop = this.positionY;
+        const ballBottom = this.positionY + this.height;
 
+        if (this.directionX && this.directionY) {
+            for (let i = 0; i < collisionObjects.length; i++)
+            {
+                let objectLeft = collisionObjects[i].positionX;
+                let objectRight = collisionObjects[i].positionX + collisionObjects[i].width;
+                let objectTop = collisionObjects[i].positionY
+                let objectBottom = collisionObjects[i].positionY = collisionObjects[i].height;
+                if (this === collisionObjects[i]) {
+                    continue;
+                } else if( ((objectLeft <= ballLeft && ballLeft <= objectRight) || (objectLeft <= ballRight && ballRight <= objectRight))&& ((objectTop <= ballTop && ballTop <= objectBottom)|| (objectTop <= ballBottom && ballBottom <= objectBottom)))
+                {
+                    this.directionX != this.directionX;
+                    break
+                }
+                if (((objectLeft <= ballLeft && ballLeft <= objectRight) || (objectLeft <= ballRight && ballRight <= objectRight)) && ((objectTop <= ballTop && ballTop <= objectBottom) || (objectTop <= ballBottom && ballBottom <= objectBottom)))
+                {
+
+                }
+            }
+        } else if (this.directionX && !this.directionY) {
+
+        } else if (!this.directionX && this.directionY) {
+
+        } else
+        {
+
+        }
+    }
 
 }
 const drawObject = (collisionObjects,context) =>
@@ -56,7 +91,7 @@ const drawObject = (collisionObjects,context) =>
 }
 
 const collisionObjects = [];
-conts ballsGame = [];
+const ballsGame = [];
 
 const playerPaddel = new Paddel(20, 120, 'green', 10, 50);
 const computerPaddel = new Paddel(20, 120, 'red', canvas.width - 30, 100);
