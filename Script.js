@@ -10,6 +10,11 @@ const updateGameWindow = () =>
     gameWidth = canvas.width;
     computerPaddel.positionX = canvas.width - 30;
 }
+const clearScreen = () =>
+{
+    ctx.fillStyle = 'black';
+    ctx.fillRect = (0, 0, canvas.width, canvas.height);
+}
 function Paddel(width,height,color,positionX,positionY) 
 {
     this.width = width;
@@ -45,6 +50,7 @@ const drawObject = (collisionObjects,context) =>
 }
 
 const collisionObjects = [];
+conts ballsMove = [];
 
 const playerPaddel = new Paddel(20, 120, 'green', 10, 50);
 const computerPaddel = new Paddel(20, 120, 'red', canvas.width - 30, 100);
